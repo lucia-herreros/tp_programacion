@@ -1,4 +1,4 @@
-# TP Restaurante — Proyecto en Python 🍽️
+# TP Restaurante 🍽️
 
 ## Descripción
 
