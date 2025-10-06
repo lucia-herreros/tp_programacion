@@ -26,5 +26,4 @@ tp_programacion/
 ├── menu.py            # Lógica relacionada al menú de platos
 ├── pedidos.py         # Gestión de pedidos (alta, seguimiento, cierre)
 ├── reservas.py        # Gestión de reservas de mesas
-├── platos.json         # Datos persistentes de los platos del menú
-└── README.md           # Este archivo
+└── platos.json         # Datos persistentes de los platos del menú
