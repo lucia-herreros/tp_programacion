@@ -2,10 +2,51 @@ reservas = []  # Lista global temporal
 
 def hacer_reserva():
     print("\n--- HACER UNA RESERVA ---")
-    nombre = input("Ingrese su nombre: ").strip()
-    cantidad = input("Cantidad de personas: ").strip()
-    fecha = input("Fecha (DD/MM): ").strip()
-    hora = input("Hora (HH:MM): ").strip()
+    
+    # Ingreso y validación del nombre de la reserva
+    while True:
+        nombre = input("Ingrese su nombre: ").strip()
+        if len(nombre) < 3:
+            print("❌ El nombre debe tener al menos 3 caracteres.")
+        elif not all(c.isalpha() or c.isspace() for c in nombre):
+            print("❌ El nombre solo puede contener letras y espacios.")
+        else:
+            break
+    
+    # Ingreso y validación de la cantidad de personas
+    while True:
+        try:
+            cantidad = int(input("Cantidad de personas: ").strip())
+            if cantidad <= 0:
+                print("❌ Por favor, ingrese un número mayor a 0.")
+            else:
+                break
+        except ValueError:
+            print("❌ Por favor, ingrese solo números.")
+    
+    # Ingreso y validación de la fecha
+    while True:
+        fecha = input("Fecha (DD/MM): ").strip()
+        try:
+            dia, mes = map(int, fecha.split("/"))
+            if 1 <= dia <= 31 and 1 <= mes <= 12:
+                break
+            else: 
+                print("❌ Día o mes inválido.")
+        except (ValueError, TypeError):
+            print("❌ Formato inválido. Ingrese la fecha con el formato DD/MM y utilice solo números (ej: 05/10).") 
+
+    # Ingreso y validación de la fecha
+    while True:
+        hora = input("Hora (HH:MM): ").strip()
+        try:
+            h, min = map(int, hora.split(":"))
+            if 0 <= h <= 23 and 0 <= min <= 59:
+                break
+            else: 
+                print("❌ Ingrese un horario entre las 00:00 y las 23:59.")
+        except (ValueError, TypeError):
+            print("❌ Formato inválido. Ingrese la hora con el formato HH:MM y utilice solo números (ej: 20:30).") 
 
     reserva = {
         "nombre": nombre,

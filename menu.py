@@ -2,7 +2,7 @@ import json
 
 def mostrar_menu():
     try:
-        with open("platos.json", "r") as archivo:
+        with open("datos/platos.json", "r") as archivo:
             platos = json.load(archivo)
 
             tamaño_columna_id = 8
