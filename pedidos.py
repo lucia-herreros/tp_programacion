@@ -38,7 +38,9 @@ def hacer_pedido():
             print(f"✅ {plato['nombre']} agregado al pedido.")
         else:
             print("ID inválido, intente nuevamente.")
-
+            
+    # Verifica si la lista "pedido" tiene algun plato agregado, si hay platos muestra un resumen del pedido listando su nombre y su precio
+    # Junto con su total. Si la lista esta vacia muestra un mensaje indicando que no se agrego ningun plato al pedido.
     if pedido:
         print("\n--- RESUMEN DEL PEDIDO ---")
         for p in pedido:
@@ -46,3 +48,4 @@ def hacer_pedido():
         print(f"TOTAL: ${total}")
     else:
         print("No se agregó ningún plato al pedido.")
+
