@@ -3,7 +3,8 @@ reservas = []  # Lista global temporal
 def hacer_reserva():
     print("\n--- HACER UNA RESERVA ---")
     
-    # Ingreso y validación del nombre de la reserva
+    # Ingreso y validación del nombre de la reserva. 
+    # Recorre cada caracter del nombre y comprueba que sea una letra o un espacio y si todo sale bien sale del bucle con el break.
     while True:
         nombre = input("Ingrese su nombre: ").strip()
         if len(nombre) < 3:
@@ -64,3 +65,4 @@ def mostrar_reservas():
         return
     for i, r in enumerate(reservas, start=1):
         print(f"{i}. {r['nombre']} - {r['personas']} personas - {r['fecha']} {r['hora']}")
+
