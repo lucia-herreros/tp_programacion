@@ -3,6 +3,12 @@ reservas = []  # Lista global temporal
 def hacer_reserva():
     print("\n--- HACER UNA RESERVA ---")
     
+    # Informar al usuario sobre los horarios del restaurante
+    horario_apertura = "19:00 hs"
+    horario_cierre = "23:59 hs"
+    
+    print(f"❗ Por favor, tenga en cuenta que los horarios del restaurante son de {horario_apertura} a {horario_cierre} ❗ \n")
+
     # Ingreso y validación del nombre de la reserva. 
     # Recorre cada caracter del nombre y comprueba que sea una letra o un espacio y si todo sale bien sale del bucle con el break.
     while True:
@@ -43,9 +49,12 @@ def hacer_reserva():
         try:
             h, min = map(int, hora.split(":"))
             if 0 <= h <= 23 and 0 <= min <= 59:
-                break
+                if h >= 19:
+                    break
+                else:
+                    print("❌ Ingrese un horario válido.")     
             else: 
-                print("❌ Ingrese un horario entre las 00:00 y las 23:59.")
+                print("❌ Ingrese un horario válido.")
         except (ValueError, TypeError):
             print("❌ Formato inválido. Ingrese la hora con el formato HH:MM y utilice solo números (ej: 20:30).") 
 

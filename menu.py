@@ -10,7 +10,7 @@ def mostrar_menu():
             titulo = "--- MENÚ DE PLATOS ---"
             headers = [" ", "Plato", "Precio"]
             
-            print(titulo)
+            print(f"\n{titulo}")
             
             # Imprimir línea divisoria
             print("|" + ("-" * tamaño_columna_id) + "|" + ("-" * tamaño_columna + "|") * 2)
@@ -23,7 +23,7 @@ def mostrar_menu():
 
             # Imprimir cada plato
             for plato in platos:
-                print(f"|{plato['id']:^{tamaño_columna_id}}|{plato['nombre']:^{tamaño_columna}}|{plato['precio']:^{tamaño_columna}}|")
+                print(f"|{plato['id']:^{tamaño_columna_id}}|{plato['nombre']:^{tamaño_columna}}|{"$" + str(plato['precio']):^{tamaño_columna}}|")
             
             # Imprimir línea divisoria final
             print("|" + ("-" * tamaño_columna_id) + "|" + ("-" * tamaño_columna + "|") * 2)

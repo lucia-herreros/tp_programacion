@@ -26,10 +26,10 @@ def main():
         elif opcion == 4:
             reservas.mostrar_reservas()
         elif opcion == 5:
-            print("¡Hasta pronto!")
+            print("\n¡Hasta pronto!\n")
             break
         else:
-            print("Opción inválida. Ingrese un número entre 1 y 5\n")
+            print("❌ Opción inválida. Ingrese un número entre 1 y 5\n")
 
 if __name__ == "__main__":
     main()
