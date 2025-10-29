@@ -1,24 +1,45 @@
-reservas = []  # Lista global temporal
+import validaciones
+import csv
+from datetime import datetime, time
+
+def guardar_reserva(r):
+    try:
+        with open("datos/reservas.csv", "a", newline="") as archivo:
+            escritor = csv.writer(archivo)
+
+            # Si el archivo está vacío, se escriben los encabezados
+            if archivo.tell() == 0:
+                escritor.writerow(["nombre", "personas", "fecha", "hora"])
+
+            # Escribir los datos desde el diccionario 
+            escritor.writerow([
+                r["nombre"],
+                r["personas"],
+                r["fecha"],
+                r["hora"]
+            ])
+
+            print(f"\n✅ Reserva registrada para {r["nombre"]} para {r["personas"]} personas el {r["fecha"]} a las {r["hora"]} hs.")
+
+    except FileNotFoundError:
+        print("❌ No se encontró el archivo")
+    except KeyError as e:
+        print(f"❌ Error con la clave {e}")
+    except Exception as e:
+        print(f"❌ Ocurrió un error inesperado: {e}")
+
 
 def hacer_reserva():
     print("\n--- HACER UNA RESERVA ---")
     
     # Informar al usuario sobre los horarios del restaurante
-    horario_apertura = "19:00 hs"
-    horario_cierre = "23:59 hs"
+    horario_apertura = time(19, 0)
+    horario_cierre = time(22, 0)
     
-    print(f"❗ Por favor, tenga en cuenta que los horarios del restaurante son de {horario_apertura} a {horario_cierre} ❗ \n")
-
-    # Ingreso y validación del nombre de la reserva. 
-    # Recorre cada caracter del nombre y comprueba que sea una letra o un espacio y si todo sale bien sale del bucle con el break.
-    while True:
-        nombre = input("Ingrese su nombre: ").strip()
-        if len(nombre) < 3:
-            print("❌ El nombre debe tener al menos 3 caracteres.")
-        elif not all(c.isalpha() or c.isspace() for c in nombre):
-            print("❌ El nombre solo puede contener letras y espacios.")
-        else:
-            break
+    print(f"❗ Por favor, tenga en cuenta que solo se toman reservas desde las {horario_apertura.strftime("%H:%M hs")} hasta las {horario_cierre.strftime("%H:%M hs")}")
+    
+    # Ingreso y validación del nombre  
+    nombre = validaciones.pedir_nombre()
     
     # Ingreso y validación de la cantidad de personas
     while True:
@@ -33,28 +54,31 @@ def hacer_reserva():
     
     # Ingreso y validación de la fecha
     while True:
-        fecha = input("Fecha (DD/MM): ").strip()
+        input_fecha = input("Fecha (DD/MM): ").strip()
         try:
-            dia, mes = map(int, fecha.split("/"))
-            if 1 <= dia <= 31 and 1 <= mes <= 12:
-                break
-            else: 
-                print("❌ Día o mes inválido.")
-        except (ValueError, TypeError):
-            print("❌ Formato inválido. Ingrese la fecha con el formato DD/MM y utilice solo números (ej: 05/10).") 
+            # Validar formato y valores correctos de día y mes
+            fecha = datetime.strptime(input_fecha + f"/{datetime.now().year}", "%d/%m/%Y").date()
+            hoy = datetime.now().date()
 
-    # Ingreso y validación de la fecha
+            # Verificar que la fecha ingresada sea igual o posterior a la fecha actual 
+            if fecha < hoy:
+                print("❌ No se pueden realizar reservas para fechas anteriores a hoy.")
+            else:
+                break
+        except (ValueError, TypeError):
+            print("❌ Formato o valor inválido. Ingrese la fecha con el formato DD/MM y utilice solo números (ej: 05/10).") 
+
+    # Ingreso y validación de la hora
     while True:
-        hora = input("Hora (HH:MM): ").strip()
+        input_hora = input("Hora (HH:MM): ").strip()
         try:
-            h, min = map(int, hora.split(":"))
-            if 0 <= h <= 23 and 0 <= min <= 59:
-                if h >= 19:
-                    break
-                else:
-                    print("❌ Ingrese un horario válido.")     
-            else: 
-                print("❌ Ingrese un horario válido.")
+            hora = datetime.strptime(input_hora, "%H:%M").time()
+
+            if horario_apertura <= hora <= horario_cierre:
+                break
+            else:
+                print(f"❌ El restaurante solo acepta reservas entre {horario_apertura.strftime("%H:%M hs")} y {horario_cierre.strftime("%H:%M hs")}.")
+            
         except (ValueError, TypeError):
             print("❌ Formato inválido. Ingrese la hora con el formato HH:MM y utilice solo números (ej: 20:30).") 
 
@@ -64,14 +88,28 @@ def hacer_reserva():
         "fecha": fecha,
         "hora": hora
     }
-    reservas.append(reserva)
-    print(f"\n✅ Reserva registrada para {nombre} el {fecha} a las {hora}hs.")
 
-def mostrar_reservas():
-    print("\n--- LISTA DE RESERVAS ---")
-    if not reservas:
-        print("No hay reservas registradas.")
-        return
-    for i, r in enumerate(reservas, start=1):
-        print(f"{i}. {r['nombre']} - {r['personas']} personas - {r['fecha']} {r['hora']}")
+    guardar_reserva(reserva)
+    
 
+def mostrar_reservas():    
+    try:
+        with open("datos/reservas.csv", "r") as archivo:
+            # Cada fila se lee como un diccionario
+            lector = csv.DictReader(archivo)  
+            reservas = list(lector)
+
+            if not reservas:
+                print("\nNo hay reservas registradas.")
+                return
+
+            print("\n--- LISTA DE RESERVAS ---")
+            
+            for i, r in enumerate(reservas, start=1):
+                print(f"{i}. {r['nombre']} - {r['personas']} personas - {r['fecha']} a las {r['hora']}hs")
+    except FileNotFoundError:
+        print("❌ No se encontró el archivo")
+    except KeyError as e:
+        print(f"❌ Error con la clave {e}")
+    except Exception as e:
+        print(f"❌ Ocurrió un error inesperado: {e}")
