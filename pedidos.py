@@ -1,4 +1,5 @@
 import json
+import validaciones
 
 def hacer_pedido():
     print("\n--- HACER UN PEDIDO ---")
@@ -21,15 +22,7 @@ def hacer_pedido():
     total = 0
 
     # Ingreso y validación del nombre para el pedido
-    # Recorre cada caracter del nombre y comprueba que sea una letra o un espacio y si todo sale bien sale del bucle con el break.
-    while True:
-        nombre = input("\nIngrese su nombre: ").strip()
-        if len(nombre) < 3:
-            print("❌ El nombre debe tener al menos 3 caracteres.")
-        elif not all(c.isalpha() or c.isspace() for c in nombre):
-            print("❌ El nombre solo puede contener letras y espacios.")
-        else:
-            break
+    nombre = validaciones.pedir_nombre()
     
     # Ingreso y validación de platos del pedido
     while True:
