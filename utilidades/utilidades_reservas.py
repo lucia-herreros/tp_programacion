@@ -73,7 +73,5 @@ def leer_reservas():
     
     except FileNotFoundError:
         print("❌ No se encontró el archivo")
-    except KeyError as e:
-        print(f"❌ Error con la clave {e}")
     except Exception as e:
         print(f"❌ Ocurrió un error inesperado: {e}")

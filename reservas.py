@@ -42,9 +42,11 @@ def mostrar_reservas():
     if not reservas:
         print("\n📂 No hay reservas registradas.")
     else:
-        print("\n--- LISTA DE RESERVAS ---")
-            
-        for i, r in enumerate(reservas, start=1):
-            print(f"{i}. {r['nombre']} - {r['personas']} personas - {r['fecha']} a las {r['hora']}hs")
-    
+        try:
+            print("\n--- LISTA DE RESERVAS ---")
+                
+            for i, r in enumerate(reservas, start=1):
+                print(f"{i}. {r['nombre']} - {r['personas']} personas - {r['fecha']} a las {r['hora']}hs")
+        except KeyError as e:
+            print(f"❌ Error con la clave {e}")
 
