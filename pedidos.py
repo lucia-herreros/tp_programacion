@@ -1,18 +1,10 @@
-import json
 import validaciones
+from utilidades.utilidades_platos import cargar_platos
 
 def hacer_pedido():
     print("\n--- HACER UN PEDIDO ---")
 
-    try:
-        with open("datos/platos.json", "r") as archivo:
-            platos = json.load(archivo)
-    except FileNotFoundError:
-        print("No se encontró el archivo de platos.")
-        return
-    except json.JSONDecodeError:
-        print("Error al leer el archivo de platos.")
-        return
+    platos = cargar_platos()
 
     # Mostrar menú simple
     for p in platos:

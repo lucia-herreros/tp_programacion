@@ -5,7 +5,7 @@ def pedir_nombre():
     if len(nombre) < 3 or not all(c.isalpha() or c.isspace() for c in nombre):
         print("❌ Nombre inválido. Intente de nuevo.")
         return pedir_nombre()  # La función vuelve a llamarse a sí misma
-    return nombre
+    return nombre.title() # Normalizar
 
 def pedir_cantidad_personas():
     while True:
@@ -13,10 +13,12 @@ def pedir_cantidad_personas():
             cantidad = int(input("Cantidad de personas: ").strip())
             if cantidad <= 0:
                 print("❌ Por favor, ingrese un número mayor a 0.")
+            elif cantidad > 10:
+                print("❌ No se pueden realizar reservas para más de 10 personas.")
             else:
                 return cantidad
         except ValueError:
-            print("❌ Por favor, ingrese solo números.")
+            print("❌ Por favor, ingrese solo números enteros.")
 
 def pedir_fecha():
     while True:
