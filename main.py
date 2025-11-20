@@ -1,6 +1,7 @@
 import menu
 import reservas
 import pedidos
+from validaciones import pedir_opcion
 
 def main():
     while True:
@@ -11,11 +12,8 @@ def main():
         print("4. Ver reservas")
         print("5. Salir")
         
-        try: 
-            opcion = int(input("Elija una opción: ").strip())
-        except ValueError:
-            print("⚠️ Por favor ingrese un número.\n")
-            continue
+        print("\nElija una opción:")
+        opcion = pedir_opcion()
         
         if opcion == 1:
             menu.mostrar_menu()

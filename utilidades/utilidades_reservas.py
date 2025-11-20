@@ -1,9 +1,11 @@
 import csv
 from datetime import datetime
 
+RUTA_RESERVAS = "datos/reservas.csv"
+
 def borrar_reservas():
     try:
-        with open("datos/reservas.csv", "r", newline="") as archivo:
+        with open(RUTA_RESERVAS, "r", newline="") as archivo:
             lector = csv.DictReader(archivo)
             reservas = list(lector)
 
@@ -24,7 +26,7 @@ def borrar_reservas():
                 continue
 
         # Sobrescribir el archivo con las reservas vigentes
-        with open("datos/reservas.csv", "w", newline="") as archivo:
+        with open(RUTA_RESERVAS, "w", newline="") as archivo:
             campos = ["nombre", "personas", "fecha", "hora"]
             escritor = csv.DictWriter(archivo, fieldnames=campos)
             escritor.writeheader()
@@ -37,7 +39,7 @@ def borrar_reservas():
     
 def guardar_reserva(r):
     try:
-        with open("datos/reservas.csv", "a", newline="") as archivo:
+        with open(RUTA_RESERVAS, "a", newline="") as archivo:
             escritor = csv.writer(archivo)
 
             # Si el archivo está vacío, se escriben los encabezados
@@ -64,7 +66,7 @@ def guardar_reserva(r):
 
 def leer_reservas():
     try:
-        with open("datos/reservas.csv", "r") as archivo:
+        with open(RUTA_RESERVAS, "r") as archivo:
             # Cada fila se lee como un diccionario
             lector = csv.DictReader(archivo)  
             reservas = list(lector)

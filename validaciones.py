@@ -1,5 +1,14 @@
 from datetime import datetime, time
 
+def pedir_opcion():
+    while True:
+        try: 
+            opcion = int(input(">").strip())
+            return opcion
+        except ValueError:
+            print("⚠️ Por favor ingrese un número.\n")
+        
+
 def pedir_nombre():
     nombre = input("\nIngrese su nombre: ").strip()
     if len(nombre) < 3 or not all(c.isalpha() or c.isspace() for c in nombre):
