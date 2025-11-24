@@ -29,7 +29,7 @@ tp_programacion/
 ├── utilidades/         # Funciones auxiliares y herramientas comunes
 ├── main.py             # Punto de entrada principal del programa
 ├── menu.py             # Lógica de interacción y visualización del menú
-├── platos.py           # Lógica específica para la entidad "Plato"
+├── platos.json           # Lógica específica para la entidad "Plato"
 ├── pedidos.py          # Lógica para la gestión de pedidos
-├── reservas.py         # Lógica para la gestión de reservas
+├── reservas.CSV         # Lógica para la gestión de reservas
 └── validaciones.py     # Módulo de validación de entradas
