@@ -4,7 +4,7 @@
 
 Este proyecto es un sistema de gestión para un restaurante, implementado íntegramente en **Python**. 
 
-El sistema permite manejar los elementos esenciales de un negocio gastronómico, facilitando la administración de platos, pedidos y reservas de manera eficiente.
+Permite manejar los elementos esenciales de un restaurante, facilitando la administración de platos, pedidos y reservas de manera eficiente.
 
 ## Funcionalidades Principales
 
