@@ -2,28 +2,34 @@
 
 ## Descripción
 
-Este proyecto es un sistema de gestión para un restaurante, implementado íntegramente en **Python**.  
-Permite manejar los elementos esenciales de un restaurante: el menú de platos, los pedidos, las reservas y la manipulación de datos de platos almacenados en archivo JSON.
+Este proyecto es un sistema de gestión para un restaurante, implementado íntegramente en **Python**. 
 
----
+El sistema permite manejar los elementos esenciales de un negocio gastronómico, facilitando la administración de platos, pedidos y reservas de manera eficiente.
 
-## Tecnologías / herramientas utilizadas
+## Funcionalidades Principales
 
-- Python 3.x  
-- Módulos estándar de Python (json, datetime, entre otros.)  
-- Archivo `platos.json` para persistir datos de platos  
-- (Toda la persistencia de platos está en JSON)  
-- Estructura modular con archivos para cada dominio funcional: menú, pedidos, reservas, etc.
+* **Gestión de Menú:** Alta, baja y modificación de platos.
+* **Gestión de Pedidos:** Creación, seguimiento y cierre de pedidos de clientes.
+* **Reservas:** Administración de reservas de mesas.
+* **Validaciones:** Control robusto de errores en la entrada de datos del usuario.
+* **Persistencia de Datos:** Almacenamiento de información en archivos JSON.
 
----
+## Tecnologías Utilizadas
 
-## Estructura del proyecto
+* **Lenguaje:** Python 3.x
+* **Librerías Estándar:** `json`, `datetime`, `os`, etc.
+* **Almacenamiento:** Archivos JSON para persistencia de datos.
+
+## Estructura del Proyecto
 
 ```text
 tp_programacion/
 │
-├── main.py            # Punto de entrada del programa
-├── menu.py            # Lógica relacionada al menú de platos
-├── pedidos.py         # Gestión de pedidos (alta, seguimiento, cierre)
-├── reservas.py        # Gestión de reservas de mesas
-└── platos.json         # Datos persistentes de los platos del menú
+├── datos/              # Archivos de persistencia (platos.json)
+├── utilidades/         # Funciones auxiliares y herramientas comunes
+├── main.py             # Punto de entrada principal del programa
+├── menu.py             # Lógica de interacción y visualización del menú
+├── platos.py           # Lógica específica para la entidad "Plato"
+├── pedidos.py          # Lógica para la gestión de pedidos
+├── reservas.py         # Lógica para la gestión de reservas
+└── validaciones.py     # Módulo de validación de entradas
