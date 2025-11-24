@@ -10,7 +10,7 @@ def pedir_opcion():
         
 
 def pedir_nombre():
-    nombre = input("\nIngrese su nombre: ").strip()
+    nombre = input("\nIngrese un nombre: ").strip()
     if len(nombre) < 3 or not all(c.isalpha() or c.isspace() for c in nombre):
         print("❌ Nombre inválido. Intente de nuevo.")
         return pedir_nombre()  # La función vuelve a llamarse a sí misma
@@ -54,3 +54,14 @@ def pedir_hora(apertura, cierre):
             print(f"❌ Solo se aceptan reservas entre {apertura.strftime('%H:%M')} y {cierre.strftime('%H:%M')}.")
         except ValueError:
             print("❌ Formato inválido. Use HH:MM (ej: 20:30).")
+
+def pedir_precio():
+    while True:
+        try:
+            precio = int(input("Ingrese el precio del plato: ").strip())
+            if precio <= 0:
+                print("❌ El precio debe ser mayor a 0.")
+            else:
+                return precio
+        except ValueError:
+            print("❌ Ingrese un número válido para el precio.")

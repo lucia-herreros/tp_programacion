@@ -4,20 +4,27 @@ from datetime import datetime
 RUTA_RESERVAS = "datos/reservas.csv"
 
 def borrar_reservas():
+    """
+    Elimina del archivo CSV todas las reservas cuyas fechas ya pasaron.
+    Solo deja las reservas con fecha igual o posterior al día actual.
+    """
     try:
+        # Abrir el archivo y leer todas las reservas como diccionarios
         with open(RUTA_RESERVAS, "r", newline="") as archivo:
             lector = csv.DictReader(archivo)
             reservas = list(lector)
 
+        # Si no hay reservas, termina
         if not reservas:
             return
 
         hoy = datetime.now().date()
         reservas_actualizadas = []
 
+        # Recorrer cada reserva registrada
         for r in reservas:
             try:
-                # Convertir la cadena de texto con datetime para comparar con la fecha de hoy
+                # Convertir la fecha (string) a objeto date para comparar con la fecha de hoy
                 fecha_reserva = datetime.strptime(r["fecha"], "%d/%m/%Y").date()
                 if fecha_reserva >= hoy:
                     reservas_actualizadas.append(r)
@@ -29,6 +36,8 @@ def borrar_reservas():
         with open(RUTA_RESERVAS, "w", newline="") as archivo:
             campos = ["nombre", "personas", "fecha", "hora"]
             escritor = csv.DictWriter(archivo, fieldnames=campos)
+            
+            # Escribimos encabezados y contenido
             escritor.writeheader()
             escritor.writerows(reservas_actualizadas)
     
@@ -38,6 +47,10 @@ def borrar_reservas():
         print(f"❌ Error al borrar reservas: {e}")
     
 def guardar_reserva(r):
+    """
+    Guarda una reserva en el archivo CSV.
+    Si el archivo está vacío, agrega primero los encabezados.
+    """
     try:
         with open(RUTA_RESERVAS, "a", newline="") as archivo:
             escritor = csv.writer(archivo)
@@ -65,6 +78,10 @@ def guardar_reserva(r):
 
 
 def leer_reservas():
+    """
+    Lee todas las reservas del archivo CSV y
+    las devuelve como una lista de diccionarios.
+    """
     try:
         with open(RUTA_RESERVAS, "r") as archivo:
             # Cada fila se lee como un diccionario

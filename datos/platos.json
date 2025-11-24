@@ -1,7 +1,32 @@
 [
-    {"id": 1, "nombre": "Milanesa con papas fritas", "precio": 13500},
-    {"id": 2, "nombre": "Pizza muzzarella", "precio": 12800},
-    {"id": 3, "nombre": "Ensalada Cesar", "precio": 13000},
-    {"id": 4, "nombre": "Ravioles", "precio": 14000},
-    {"id": 5, "nombre": "Fideos a la bolognesa", "precio": 20000}
+    {
+        "id": 1,
+        "nombre": "Milanesa con papas fritas",
+        "precio": 13500
+    },
+    {
+        "id": 2,
+        "nombre": "Pizza muzzarella",
+        "precio": 12800
+    },
+    {
+        "id": 3,
+        "nombre": "Ensalada Cesar",
+        "precio": 13000
+    },
+    {
+        "id": 4,
+        "nombre": "Ravioles",
+        "precio": 14000
+    },
+    {
+        "id": 5,
+        "nombre": "Fideos a la bolognesa",
+        "precio": 20000
+    },
+    {
+        "id": 6,
+        "nombre": "Lasaña",
+        "precio": 20500
+    }
 ]

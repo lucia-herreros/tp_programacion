@@ -1,6 +1,7 @@
 import menu
 import reservas
 import pedidos
+import platos
 from validaciones import pedir_opcion
 
 def main():
@@ -10,7 +11,8 @@ def main():
         print("2. Hacer una reserva")
         print("3. Hacer un pedido")
         print("4. Ver reservas")
-        print("5. Salir")
+        print("5. Agregar plato a la carta")
+        print("6. Salir")
         
         print("\nElija una opción:")
         opcion = pedir_opcion()
@@ -24,6 +26,8 @@ def main():
         elif opcion == 4:
             reservas.mostrar_reservas()
         elif opcion == 5:
+            platos.modificar_menu()
+        elif opcion == 6:
             print("\n¡Hasta pronto!\n")
             break
         else:
