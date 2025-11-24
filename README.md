@@ -25,7 +25,7 @@ Permite manejar los elementos esenciales de un restaurante, facilitando la admin
 ```text
 tp_programacion/
 │
-├── datos/              # Archivos de persistencia (platos.json)
+├── datos/              # Archivos de persistencia (platos.json y CSV)
 ├── utilidades/         # Funciones auxiliares y herramientas comunes
 ├── main.py             # Punto de entrada principal del programa
 ├── menu.py             # Lógica de interacción y visualización del menú
